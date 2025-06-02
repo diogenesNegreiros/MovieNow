@@ -15,6 +15,10 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+        vectorDrawables {
+            useSupportLibrary = true
+        }
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -40,7 +44,7 @@ android {
 }
 
 dependencies {
-
+    implementation("androidx.compose.material:material:1.6.6")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
