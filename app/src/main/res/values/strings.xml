@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Movie Now</string>
+    <string name="movies">Filmes</string>
+    <string name="loading_movies">Carregando filmes...</string>
+    <string name="year_min">Ano: %1$s • %2$s min</string>
+    <string name="back">Voltar</string>
+    <string name="favorite">Favorito</string>
+    <string name="trailer">Trailer:</string>
+    <string name="year">Ano: %1$s</string>
+    <string name="dura_o_min">Duração: %1$s min</string>
+    <string name="menu">Menu</string>
+    <string name="open_youtube">Abrir no YouTube</string>
+    <string name="default_error_msg">Tentar novamente</string>
 </resources>

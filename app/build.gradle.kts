@@ -49,8 +49,8 @@ dependencies {
 
     // Material 3 (Jetpack Compose)
     implementation("androidx.compose.material3:material3:1.2.1")
-    implementation("com.google.android.material:material:1.12.0") // suporte XML do Material 3
-
+    implementation("com.google.android.material:material:1.12.0")
+    implementation("androidx.compose.material:material-icons-extended")
 
 
     // UI Core
@@ -66,12 +66,18 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
 
-    // Testes
+// Testes unitários (rodados localmente com JVM)
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    testImplementation("org.mockito:mockito-core:5.11.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.2.1")
+
+// Testes instrumentados (Android, emulador/dispositivo)
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2024.05.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
 
     // Tooling em debug
     debugImplementation("androidx.compose.ui:ui-tooling")

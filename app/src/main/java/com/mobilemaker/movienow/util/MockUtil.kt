@@ -2,7 +2,7 @@ package com.mobilemaker.movienow.util
 
 import com.mobilemaker.movienow.models.Movie
 
-object MovieUtil {
+object MockUtil {
 
     fun mockMovie(): Movie {
         return Movie(

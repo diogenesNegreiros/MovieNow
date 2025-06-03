@@ -4,11 +4,13 @@ import android.content.Context
 import com.mobilemaker.movienow.models.Movie
 import org.json.JSONObject
 
-import kotlinx.coroutines.delay
+interface MovieRepository {
+    suspend fun fetchMovies(): List<Movie>
+}
 
-class MovieRepository(private val context: Context) {
-    suspend fun fetchMovies(): List<Movie> {
-        delay(1500) // Simula 1.5 segundos de atraso (latência)
+class AssetMovieRepository(private val context: Context) : MovieRepository {
+
+    override suspend fun fetchMovies(): List<Movie> {
         val jsonStr = context.assets.open("filmes.json").bufferedReader().use { it.readText() }
         val jsonArray = JSONObject(jsonStr).getJSONObject("data").getJSONArray("movies")
         return (0 until jsonArray.length()).map { i ->
@@ -25,4 +27,5 @@ class MovieRepository(private val context: Context) {
             )
         }
     }
+
 }

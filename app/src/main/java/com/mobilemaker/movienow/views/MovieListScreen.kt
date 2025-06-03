@@ -2,16 +2,28 @@ package com.mobilemaker.movienow.views
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.mobilemaker.movienow.R
 import com.mobilemaker.movienow.models.Movie
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material.*
+import com.mobilemaker.movienow.ui.theme.MovieAppTheme
+import com.mobilemaker.movienow.util.MockUtil
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MovieListScreen(
     movies: List<Movie>,
@@ -20,11 +32,29 @@ fun MovieListScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Stringhi Filmes") },
-                backgroundColor = MaterialTheme.colorScheme.primary,
-                contentColor = MaterialTheme.colorScheme.primary
+                title = {
+                    Text(
+                        text = stringResource(R.string.movies),
+                        style = MaterialTheme.typography.headlineSmall,
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
+                },
+                actions = {
+                    IconButton(onClick = { /* ação futura */ }) {
+                        Icon(
+                            imageVector = Icons.Default.MoreVert,
+                            contentDescription = stringResource(R.string.menu),
+                            tint = MaterialTheme.colorScheme.onPrimary
+                        )
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary
+                )
             )
-        }
+        },
+        containerColor = Color.Black
     ) { padding ->
         LazyColumn(modifier = Modifier.padding(padding)) {
             items(movies) { movie ->
@@ -34,31 +64,10 @@ fun MovieListScreen(
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, backgroundColor = 0xFF000000)
 @Composable
 fun MovieListScreenPreview() {
-    val mockMovies = listOf(
-        Movie(
-            id = "1",
-            title = "Inception",
-            description = "A thief who steals corporate secrets through dream-sharing technology.",
-            releaseYear = 2010,
-            durationMinutes = 148,
-            rating = 8.8,
-            posterUrl = "https://i.ytimg.com/vi/YoHD9XEInc0/hq720.jpg",
-            trailerUrl = "https://www.youtube.com/embed/YoHD9XEInc0"
-        ),
-        Movie(
-            id = "2",
-            title = "The Matrix",
-            description = "A hacker discovers the reality is a simulation.",
-            releaseYear = 1999,
-            durationMinutes = 136,
-            rating = 8.7,
-            posterUrl = "https://i.ytimg.com/vi/vKQi3bBA1y8/hq720.jpg",
-            trailerUrl = "https://www.youtube.com/embed/vKQi3bBA1y8"
-        )
-    )
-
-    MovieListScreen(movies = mockMovies, onMovieClick = {})
+    MovieAppTheme {
+        MovieListScreen(movies = MockUtil.mockListMovies(), onMovieClick = {})
+    }
 }
